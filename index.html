@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myVideo {
+    box-sizing: border-box;
+    border: 10px solid transparent;
+    border-radius: 20px;
+    animation: border-animation 20s linear infinite;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+  
+    @keyframes border-animation {
+      0% {
+        border-color: yellow;
+      }
+      10% {
+        border-color: gold;
+      }
+      20% {
+        border-color: #00ffff;
+      }
+      30% {
+        border-color: lightgreen;
+      }
+      40% {
+        border-color: white;
+      }
+      50% {
+        border-color: aqua;
+      }
+      60% {
+        border-color: teal;
+      }
+      70% {
+        border-color: lightgreen;
+      }
+      80% {
+        border-color: #00ffff;
+      }
+      90% {
+        border-color: gold;
+      }
+      100% {
+        border-color: yellow;
+      }
+    }
+  
+    #myVideoContainer {
+        max-width: 1130px;
+        max-height: 640px;
+        padding-top: 20px;
+        margin: 0 auto; /* center horizontally */
+        padding: 10% ; /* add some padding */
+        box-sizing: border-box;
+      }
+      @media (min-width: 1130px) {
+        #myVideoContainer {
+          padding: 0; 
+          display: flex; /* use flexbox to center vertically */
+          align-items: center;
+          justify-content: center; 
+          padding-top: 20px;
+          max-width: 100%; 
+          max-height: 100%; 
+        }
+      }
+    </style>
+    <script >
+        function resizeIframe() {
+    var iframe = document.getElementById('myVideo');
+    var maxWidth = 1120;
+    var containerWidth = Math.min((window.innerWidth * 0.8), maxWidth); // multiply window.innerWidth by 0.8 to get 80% of it
+    var height = containerWidth * 0.5625; // 16:9 aspect ratio
+    if (height > 630) { // limit height to 630px
+      height = 630;
+      containerWidth = height * 1.7778; // 16:9 aspect ratio
+    }
+    iframe.style.width = containerWidth + 'px';
+    iframe.style.height = height + 'px';
+  }
+  
+  window.addEventListener('resize', resizeIframe);
+  resizeIframe();
+
+  setInterval(function() {
+    var colors = ['yellow', 'gold', '#00ffff', 'lightgreen', 'white', 'aqua', 'teal'];
+    var randomColor = colors[Math.floor(Math.random() * colors.length)];
+    document.getElementById("myVideo").style.borderColor = randomColor;
+  }, 5000);
+    </script>
+</head>
+<body>
+    <div id="myVideoContainer">
+        <iframe id="myVideo" src="https://www.youtube.com/embed/GbxPHdgqDR4?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+</body>
+</html>

@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #myVideo {
+      #myVideo {
     box-sizing: border-box;
     border: 10px solid transparent;
     border-radius: 20px;
     animation: border-animation 20s linear infinite;
     position: relative;
-    width: 100%;
-    height: 100%;
+    /* width: 100%; removed this line */
+    /* height: 100%; removed this line */
     padding: 0;
   }
   
@@ -58,7 +58,7 @@
         max-height: 640px;
         padding-top: 20px;
         margin: 0 auto; /* center horizontally */
-        padding: 10% ; /* add some padding */
+        padding: 5% ; /* add some padding */
         box-sizing: border-box;
       }
       @media (min-width: 1130px) {
@@ -74,21 +74,19 @@
       }
     </style>
     <script >
-        function resizeIframe() {
-    var iframe = document.getElementById('myVideo');
-    var maxWidth = 1120;
-    var containerWidth = Math.min((window.innerWidth * 0.8), maxWidth); // multiply window.innerWidth by 0.8 to get 80% of it
-    var height = containerWidth * 0.5625; // 16:9 aspect ratio
-    if (height > 630) { // limit height to 630px
-      height = 630;
-      containerWidth = height * 1.7778; // 16:9 aspect ratio
-    }
-    iframe.style.width = containerWidth + 'px';
-    iframe.style.height = height + 'px';
-  }
-  
-  window.addEventListener('resize', resizeIframe);
-  resizeIframe();
+      function resizeIframe() {
+  var iframe = document.getElementById('myVideo');
+  var maxWidth = 1120;
+  var containerWidth = Math.min((window.innerWidth * 0.9), maxWidth); // multiply window.innerWidth by 0.9 to get 90% of it
+  var height = containerWidth * 0.5625; // 16:9 aspect ratio
+  iframe.style.width = containerWidth + 'px';
+  iframe.style.height = height + 'px';
+}
+
+window.onload = resizeIframe;
+
+// call the function when the window is resized
+window.onresize = resizeIframe;
 
   setInterval(function() {
     var colors = ['yellow', 'gold', '#00ffff', 'lightgreen', 'white', 'aqua', 'teal'];
@@ -96,6 +94,7 @@
     document.getElementById("myVideo").style.borderColor = randomColor;
   }, 5000);
     </script>
+
 </head>
 <body>
     <div id="myVideoContainer">
